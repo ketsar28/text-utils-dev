@@ -22,7 +22,16 @@ function App() {
     }, 3000);
   };
 
-  const ChangeNav = () => {
+  const RemoveClass = () => {
+    document.body.classList.remove("bg-warning");
+    document.body.classList.remove("bg-success");
+    document.body.classList.remove("bg-pirmary");
+    document.body.classList.remove("bg-danger");
+  };
+  const ChangeNav = (cls) => {
+    console.log(cls);
+    RemoveClass();
+    document.body.classList.add(`bg-${cls}`);
     if (mode === "dark") {
       setMode("light");
       setModeName("Red Mode");

@@ -36,10 +36,8 @@ const TextForm = (props) => {
     const el = document.querySelector("#textarea");
 
     if (el.value.length > 0) {
-      el.select();
       if (navigator.clipboard) {
         navigator.clipboard.writeText(el.value);
-        document.getSelection().removeAllRanges();
         alert(`Copied the Text : ${el.value}`);
       }
       document.execCommand("copy");
@@ -51,7 +49,7 @@ const TextForm = (props) => {
     }
   };
 
-  const handlerDownload = (text, filename) => {
+  const HandlerDownload = (text, filename) => {
     if (text.length > 0) {
       const blob = new Blob([text], { type: "text/plain" });
       const url = URL.createObjectURL(blob);
@@ -65,6 +63,15 @@ const TextForm = (props) => {
       props.alert("Text Has Been Downloaded", "success");
     } else {
       props.alert("No Text To Download", "warning");
+    }
+  };
+
+  const HandlerExtraSpaces = () => {
+    if (text.length > 0) {
+      const newText = text.replace(/\s+/g, " ").trim();
+      setText(newText);
+    } else {
+      props.alert("No Space To Removed", "warning");
     }
   };
 
@@ -117,7 +124,7 @@ const TextForm = (props) => {
           <button
             className="btn btn-success"
             disabled={isFormEmpty ? true : false}
-            onClick={() => handlerDownload(text, "file-aaw.txt")}
+            onClick={() => HandlerDownload(text, "file-aaw.txt")}
           >
             Download Text
           </button>
@@ -134,6 +141,13 @@ const TextForm = (props) => {
             onClick={HandlerClear}
           >
             Clear Form
+          </button>
+          <button
+            className="btn btn-danger"
+            disabled={isFormEmpty ? true : false}
+            onClick={HandlerExtraSpaces}
+          >
+            Remove Extra Spaces
           </button>
         </div>
       </div>

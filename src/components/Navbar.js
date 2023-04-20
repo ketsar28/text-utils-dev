@@ -32,19 +32,14 @@ const Navbar = (props) => {
               </Link>
             </li>
           </ul>
-          <form className="d-flex mb-2" role="search">
-            <input
-              className="form-control"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="btn btn-light text-success mx-2" type="submit">
-              Search
-            </button>
-          </form>
+          <div className="d-flex gap-2 me-3 my-3">
+            <div className="bg-warning rounded-circle"onClick={() => props.click('warning')} style={{height: "30px", width: "30px"}}></div>
+            <div className="bg-success rounded-circle"onClick={() => props.click('success')} style={{height: "30px", width: "30px"}}></div>
+            <div className="bg-primary rounded-circle"onClick={() => props.click('primary')} style={{height: "30px", width: "30px"}}></div>
+            <div className="bg-danger rounded-circle"onClick={() => props.click('danger')} style={{height: "30px", width: "30px"}}></div>
+          </div>
         </div>
-        <div className={`form-check form-switch text-white`} onClick={props.click}>
+        <div className={`form-check form-switch text-white`} onClick={() => props.click(null)}>
           <input
             className="form-check-input"
             type="checkbox"
